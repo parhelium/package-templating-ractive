@@ -16,8 +16,8 @@ var parseRactiveTemplates = function (compileStep) {
     var ext = path.extname(compileStep.inputPath);
     var basename = path.basename(compileStep.inputPath, ext);
 
-    if(duplicates[basename]){
-        throw new Error("File '"+basename+"' cannot be compiled as there is already template with name '"+basename+"' stored in file '"+duplicates[basename]+"'")
+    if(duplicates[basename] && duplicates[basename] != compileStep.inputPath){
+        throw new Error("File '"+basename+"'("+compileStep.inputPath+") cannot be compiled as there is already template with name '"+basename+"' stored in file '"+duplicates[basename]+"'")
     }
     duplicates[basename] = compileStep.inputPath;
     var templateTransformedToJs = "Ract['"+basename+"'] = "+ JSON.stringify(parsedTemplate);
@@ -26,8 +26,6 @@ var parseRactiveTemplates = function (compileStep) {
         sourcePath: compileStep.inputPath,
         data: templateTransformedToJs
     });
-    console.log("Ract", Ract);
-
 };
 
 Plugin.registerSourceHandler(
