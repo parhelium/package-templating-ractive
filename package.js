@@ -1,7 +1,7 @@
 Package.describe({
   name:'parhelium:templating-ractive',
   summary: "Allows ractive templates to be defined in .ract files",
-  version: "0.6.0"
+  version: "0.6.0_1"
 });
 
 Package._transitional_registerBuildPlugin({
@@ -15,7 +15,7 @@ Package._transitional_registerBuildPlugin({
 
 Package.onUse(function(api) {
   api.versionsFrom('METEOR@0.9.2.2');
-  api.use('parhelium:ractive');
+  api.use('parhelium:ractive@0.6.0');
 
   api.addFiles('templating-ractive.js');
   api.export('Ract', ['client', 'server']);
