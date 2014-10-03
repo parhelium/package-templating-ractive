@@ -20,7 +20,11 @@ var parseRactiveTemplates = function (compileStep) {
         throw new Error("File '"+basename+"'("+compileStep.inputPath+") cannot be compiled as there is already template with name '"+basename+"' stored in file '"+duplicates[basename]+"'")
     }
     duplicates[basename] = compileStep.inputPath;
-    var templateTransformedToJs = "Ract['"+basename+"'] = "+ JSON.stringify(parsedTemplate);
+    var templateTransformedToJs = [
+            "var tpl = "+ JSON.stringify(parsedTemplate)+";",
+            "Ract.addTemplate('"+basename+"', tpl); "
+    ].join('');
+
     compileStep.addJavaScript({
         path: path.join(path_part, "ract." + basename + ".js"),
         sourcePath: compileStep.inputPath,
