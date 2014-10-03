@@ -1,7 +1,7 @@
 Package.describe({
   name:'parhelium:templating-ractive',
   summary: "Allows ractive templates to be defined in .ract files",
-  version: "1.0.2"
+  version: "0.6.0"
 });
 
 Package._transitional_registerBuildPlugin({
